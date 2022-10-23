@@ -1,0 +1,23 @@
+.container{
+display: flex;
+align-items: center;
+margin: 0 auto;
+justify-content: center;
+}
+.viget{
+    position: fixed;
+    top: 30%;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    background-color: #d31a48;
+    border-radius: 15px;
+    padding: 0 30px;
+}
+.temp{
+    font-size: 30px;
+    font-weight: bold;
+}
+.second{
+   margin-top: 30px;
+}
