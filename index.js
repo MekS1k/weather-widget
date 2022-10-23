@@ -30,9 +30,9 @@ function search() {
     sessionStorage.setItem('pWind', pWind.innerHTML)
 
     //Если такого города нет
-     if(data.temperature === '')
+    if(data.temperature === '' || data.message === 'NOT_FOUND')
      {
-       return alert("Такого города нет")
+       return alert("Информации по городу " +city.value + " нет" )
      }
      let temp = data.temperature.replace(/[^0-9-]/g, '') //убираем в графе температура всё, кроме минуса и цифр
      temp = Number(temp) //меняем тип данных у температуры из string в number
