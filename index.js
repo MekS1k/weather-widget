@@ -23,7 +23,7 @@ fetch('https://restcountries.com/v3.1/all')
 function search() {
 
   try {
-    fetch('https://goweather.herokuapp.com/weather/' + city.value)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=b716e8d1dec234250048fd364cfa9c6f`)
       //обрабатываем данные с API в JSON
       .then(function (resp) {
         return resp.json()
@@ -32,9 +32,9 @@ function search() {
       .then(function (data) {//получаем уже обработанные данные
         console.log(data)
         pCity.innerHTML = city.value
-        pTemp.innerHTML = data.temperature
-        pDesc.innerHTML = data.description
-        pWind.innerHTML = data.wind
+        pTemp.innerHTML = Math.round(data.main.temp - 273)+" °C"
+        pDesc.innerHTML = data.weather[0].description
+        pWind.innerHTML = data.wind.speed+" м/с"
         //Загружаем данные в sessionStorage
         sessionStorage.setItem('select', city.value)
         sessionStorage.setItem('pCity', pCity.innerHTML)
@@ -43,10 +43,10 @@ function search() {
         sessionStorage.setItem('pWind', pWind.innerHTML)
 
         //Если такого города нет
-        if (data.temperature === '' || data.message === 'NOT_FOUND') {
+        if (data.main.tempe === '' || data.main.temp === 'NOT_FOUND') {
           return alert("Информации по городу " + city.value + " нет")
         }
-        let temp = data.temperature.replace(/[^0-9-]/g, '') //убираем в графе температура всё, кроме минуса и цифр
+        let temp = Math.round(data.main.temp - 273)
         temp = Number(temp) //меняем тип данных у температуры из string в number
         if (temp > 20) {
           back.style.background = "#FFFFCC"
