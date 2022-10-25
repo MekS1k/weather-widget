@@ -63,23 +63,10 @@ function search() {
     alert(error)
   }
 }
-//функция для закрепления виджета и сохранения фона
-function zak() {
-  sessionStorage.setItem('top1', viget.style.top)
-  sessionStorage.setItem('left', viget.style.left)
-  sessionStorage.setItem('color', back.style.background)
-}
 setInterval(function ()//Обновляем данные каждую минуту
 {
   search()
 }, 60000)//в миллисекундах
-
-setInterval(function ()//Вызываем функцию каждую секунду, чтобы закрепить виджет (ужасный костыль)
-{
-  zak()
-}, 100)
-
-
 
 const color = sessionStorage.getItem('color')//Получаем данные из sessionStorage
 back.style.background = color //присваивам данные из хранилища в html
@@ -111,6 +98,9 @@ window.addEventListener('mouseup', mouseUp)// при отпускании
 
 function mouseUp() {//удаляет событие передвижения
   window.removeEventListener('mousemove', move)
+  sessionStorage.setItem('top1', viget.style.top)
+  sessionStorage.setItem('left', viget.style.left)
+  sessionStorage.setItem('color', back.style.background)
 }
 
 function mouseDown(e) { //добавляет событие передвижения
@@ -120,4 +110,4 @@ function mouseDown(e) { //добавляет событие передвижен
 function move(e) {//двигает
   viget.style.top = e.clientY + 'px'
   viget.style.left = e.clientX + 'px'
-};
+}
