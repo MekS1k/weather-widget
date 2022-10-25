@@ -43,7 +43,7 @@ function search() {
         sessionStorage.setItem('pWind', pWind.innerHTML)
 
         //Если такого города нет
-        if (data.main.tempe === '' || data.main.temp === 'NOT_FOUND') {
+        if (data.main.temp === '' || data.main.temp === 'NOT_FOUND') {
           return alert("Информации по городу " + city.value + " нет")
         }
         let temp = Math.round(data.main.temp - 273)
